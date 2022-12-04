@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Montserrat", sans-serif;
+    @apply transition-all duration-150 ease-in-out select-none;
+}
+
+.nav-link {
+    @apply text-gray-700 hover:text-amber-600 px-4 font-medium md:text-lg text-xl text-start transition-all duration-150 ease-in-out;
+}
