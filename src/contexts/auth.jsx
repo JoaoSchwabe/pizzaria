@@ -5,6 +5,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+
     const loadingStorageData = async () => {
         const userToken = localStorage.getItem("@Auth:token");
         const user = localStorage.getItem("@Auth:user");
@@ -29,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     const signin = async ({ email, password }) => {
         const response = await api.post("/login", { email, password });
         if (response.data.error) {
-            return response.data.error;
+            return;
         } else {
             localStorage.setItem("@Auth:token", response.data.token);
             localStorage.setItem(

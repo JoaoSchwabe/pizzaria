@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import useAuth from "../../hooks/useAuth";
 import { api } from "../../services/api";
@@ -15,6 +14,7 @@ const Profile = () => {
 
     useEffect(() => {
         api.get("/pizza/profile").then((response) => {
+            console.log(response.data);
             setPedidos(response.data);
         });
     }, []);
@@ -28,7 +28,6 @@ const Profile = () => {
                         <h1 className="font-bold text-lg">Seu perfil</h1>
                         <p>Nome: {user.name} </p>
                         <p>Email: {user.email} </p>
-                        <p>Tipo: {user.type}</p>
                         <button
                             className="my-5 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                             onClick={handleSignout}
@@ -37,9 +36,14 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-                <div>
+                <div className={pedidos?.length > 0 ? "" : "hidden"}>
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="py-4 px-6 md:min-w-full lg:px-8">
+                        <div className="py-4 px-6 md:min-w-full lg:px-8 text-center">
+                            <p>Veja aqui seu pedido!</p>
+                            <p>
+                                Atualize a página para acompanhar o status do
+                                pedido
+                            </p>
                             <div className="overflow-hidden">
                                 <table className="w-full">
                                     <thead className="border-b bg-white">

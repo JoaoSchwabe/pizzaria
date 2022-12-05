@@ -19,11 +19,14 @@ const Signin = () => {
         }
         const data = { email, password };
 
-        await signin(data);
+        const res = await signin(data);
+        if (!res) {
+            setError("Email ou senha incorretos");
+        }
     };
 
     if (signed) {
-        return <Navigate to={"/"} />;
+        return <Navigate to={-1} replace={true} />;
     } else {
         return (
             <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -66,7 +69,7 @@ const Signin = () => {
                                 <Button
                                     Text="Entrar"
                                     Type="button"
-                                    onClick={handleLogin}
+                                    onClick={(e) => handleLogin(e)}
                                 />
                                 <label className="flex justify-between text-gray-400 py-2">
                                     Não tem uma conta?

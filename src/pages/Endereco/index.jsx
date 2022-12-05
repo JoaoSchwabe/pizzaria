@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import Navbar from "../../components/Navbar";
 import { api } from "../../services/api";
 
 const Endereco = () => {
+    const navigate = useNavigate();
+    const [msg, setMsg] = useState("");
     const [cep, setCep] = useState("");
     const [rua, setRua] = useState("");
     const [numero, setNumero] = useState("");
@@ -32,6 +35,10 @@ const Endereco = () => {
         api.post("/pizza/endereco", data).then((res) => {
             console.log(res.data);
         });
+
+        if (!alreadExists) {
+            navigate("/pedido");
+        }
     };
 
     const handleCep = (e) => {
@@ -78,6 +85,7 @@ const Endereco = () => {
             setCidade(data[0].cidade);
             setEstado(data[0].estado);
         });
+        setMsg("Endereço atualizado com sucesso");
     };
 
     useEffect(() => {
@@ -92,6 +100,20 @@ const Endereco = () => {
             data.error ? setAlreadyExists(false) : setAlreadyExists(true);
         });
     }, []);
+
+    useEffect(() => {
+        if (alreadExists) {
+            setMsg("Endereço já cadastrado");
+        }
+    }, [alreadExists]);
+
+    useEffect(() => {
+        if (msg) {
+            setTimeout(() => {
+                setMsg("");
+            }, 5 * 1000);
+        }
+    }, [msg]);
 
     return (
         <>
@@ -174,6 +196,7 @@ const Endereco = () => {
                             ]}
                         />
                         <label className="text-red-600">{error}</label>
+                        <label className="text-green-600">{msg}</label>
                     </div>
                     <button
                         className="bg-orange-400 hover:bg-orange-500 p-3 self-center rounded-md text-white font-bold"
