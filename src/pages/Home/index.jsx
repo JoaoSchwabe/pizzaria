@@ -46,7 +46,7 @@ const Home = () => {
 
                     <Chart
                         chartType="BarChart"
-                        loader={<div>Loading Chart</div>}
+                        loader={<div>Carregando gráfico</div>}
                         data={data}
                         options={{
                             title: "Sabores mais vendidos",
