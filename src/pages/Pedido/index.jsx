@@ -15,8 +15,7 @@ const Pedido = () => {
     const [error, setError] = useState("");
     const [data, setData] = useState([]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         console.log(selectedOpt);
         if (!selectedOpt || !selectedMassa || !selectedBorda) {
             setError("Preencha todos os campos");
@@ -65,7 +64,7 @@ const Pedido = () => {
     return (
         <>
             <Navbar />
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={handleSubmit}>
                 <div className="flex flex-col items-center w-full min-h-[40vh] h-auto">
                     <div className="flex flex-col items-center justify-center md:justify-end">
                         <div className="min-w-[50vw] md:min-w-[25vw] text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 p-1 m-4">
