@@ -35,7 +35,7 @@ const Pedido = () => {
 
         navigate("/profile");
     };
-
+    e;
     const sabores = data.sabores?.map((sabor) => {
         return { value: sabor.idSabores, label: sabor.nome };
     });

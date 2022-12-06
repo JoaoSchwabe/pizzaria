@@ -157,7 +157,7 @@ const Endereco = () => {
                         />
                         <Input
                             label="Número"
-                            type="text"
+                            type="number"
                             placeholder="Digite seu Número"
                             value={numero}
                             onChange={(e) => [
