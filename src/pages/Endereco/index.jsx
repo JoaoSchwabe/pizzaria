@@ -136,7 +136,7 @@ const Endereco = () => {
                     <div className="w-[80vw] md:w-[30vw]">
                         <Input
                             label="CEP"
-                            type="text"
+                            type="number"
                             placeholder="Digite seu CEP"
                             value={cep}
                             onChange={(e) => [
